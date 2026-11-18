@@ -1,0 +1,406 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "name": "Ops Ledger",
+    "slug": "ops-ledger",
+    "prefix": "OPSL",
+    "description": "SaaS B2B multi-tenant para equipes operacionais registrarem procedimentos, evidências de execução, aprovações e auditorias internas.",
+    "stage": "mvp",
+    "artifactLanguage": "pt-BR",
+    "northStar": "Processos críticos concluídos com evidência e aprovação dentro do SLA.",
+    "outOfScope": [
+      "Aplicativo móvel nativo",
+      "Marketplace",
+      "UGC público"
+    ],
+    "repositoryPath": null
+  },
+  "theme": {
+    "primary": "#172554",
+    "accent": "#2563eb",
+    "surface": "#ffffff",
+    "background": "#f4f7f5",
+    "text": "#172b36",
+    "tone": "claro, direto e confiável",
+    "logoDataUrl": null
+  },
+  "timelineMonths": 12,
+  "team": [
+    {
+      "name": "CEO",
+      "role": "Produto e vendas",
+      "capacity": "full-time"
+    },
+    {
+      "name": "CTO",
+      "role": "Engenharia",
+      "capacity": "full-time"
+    },
+    {
+      "name": "Ops",
+      "role": "Operações",
+      "capacity": "part-time"
+    }
+  ],
+  "modules": {
+    "ai-automation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "subscriptions": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "marketplace": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "teams-rbac": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "enterprise": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "document-processing": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "realtime-collaboration": {
+      "status": "uncertain",
+      "reason": "Hipótese a validar antes de comprometer implementação."
+    },
+    "public-api": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "mobile-pwa": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "regulated-data": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "internationalization": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "ugc-moderation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "data-migration": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "developer-product": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "community-referral": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "sales-customer-success": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    }
+  },
+  "architecture": [
+    {
+      "layer": "Experience",
+      "description": "Interface responsiva, acessível e orientada à jornada principal."
+    },
+    {
+      "layer": "Application",
+      "description": "Casos de uso, autorização, workflows e transações."
+    },
+    {
+      "layer": "Domain",
+      "description": "Entidades, políticas e invariantes independentes da infraestrutura."
+    },
+    {
+      "layer": "Infrastructure",
+      "description": "Persistência, filas, billing, notificações e integrações atrás de portas."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-DOMAIN",
+      "title": "Workflow principal não entrega o resultado prometido",
+      "probability": "medium",
+      "impact": "critical",
+      "owner": "Produto",
+      "mitigation": "Validar a fatia vertical com usuários e fixtures representativas antes de expandir."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "activation",
+      "name": "Ativação",
+      "category": "product",
+      "target": "≥60%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "retention",
+      "name": "Retenção em 4 semanas",
+      "category": "product",
+      "target": "≥35%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "conversion",
+      "name": "Trial para pago",
+      "category": "commercial",
+      "target": "≥10%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "availability",
+      "name": "Disponibilidade mensal",
+      "category": "quality",
+      "target": "≥99,9%",
+      "direction": "maintain",
+      "progress": 0
+    },
+    {
+      "id": "security",
+      "name": "Vulnerabilidades críticas abertas",
+      "category": "security",
+      "target": "0",
+      "direction": "decrease",
+      "progress": 0
+    }
+  ],
+  "raci": [
+    {
+      "area": "Produto",
+      "responsible": "Produto",
+      "accountable": "CEO",
+      "consulted": [
+        "CTO"
+      ],
+      "informed": [
+        "Operações"
+      ]
+    },
+    {
+      "area": "Engenharia",
+      "responsible": "CTO",
+      "accountable": "CEO",
+      "consulted": [
+        "Produto"
+      ],
+      "informed": [
+        "Operações"
+      ]
+    },
+    {
+      "area": "Go to market",
+      "responsible": "Operações",
+      "accountable": "CEO",
+      "consulted": [
+        "Produto"
+      ],
+      "informed": [
+        "CTO"
+      ]
+    },
+    {
+      "area": "Segurança e release",
+      "responsible": "CTO",
+      "accountable": "CEO",
+      "consulted": [
+        "Operações"
+      ],
+      "informed": [
+        "Produto"
+      ]
+    }
+  ],
+  "domainTracks": [
+    "process-governance"
+  ],
+  "domainTasks": [
+    {
+      "catalogKey": "controlled-procedure.modelar-procedimento-controlado",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Modelar procedimento controlado",
+      "description": "Entregar modelar procedimento controlado como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "L",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Modelar procedimento controlado funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [],
+      "defaultStage": 5
+    },
+    {
+      "catalogKey": "controlled-procedure.versionar-procedimento",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Versionar procedimento",
+      "description": "Entregar versionar procedimento como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Versionar procedimento funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.modelar-procedimento-controlado"
+      ],
+      "defaultStage": 6
+    },
+    {
+      "catalogKey": "controlled-procedure.executar-checklist-operacional",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Executar checklist operacional",
+      "description": "Entregar executar checklist operacional como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Executar checklist operacional funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.versionar-procedimento"
+      ],
+      "defaultStage": 7
+    },
+    {
+      "catalogKey": "controlled-procedure.anexar-evidencia",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Anexar evidência",
+      "description": "Entregar anexar evidência como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Anexar evidência funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.executar-checklist-operacional"
+      ],
+      "defaultStage": 8
+    },
+    {
+      "catalogKey": "controlled-procedure.solicitar-aprovacao",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Solicitar aprovação",
+      "description": "Entregar solicitar aprovação como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Solicitar aprovação funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.anexar-evidencia"
+      ],
+      "defaultStage": 9
+    },
+    {
+      "catalogKey": "controlled-procedure.registrar-nao-conformidade",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Registrar não conformidade",
+      "description": "Entregar registrar não conformidade como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Registrar não conformidade funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.solicitar-aprovacao"
+      ],
+      "defaultStage": 10
+    },
+    {
+      "catalogKey": "controlled-procedure.gerar-trilha-de-auditoria",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Gerar trilha de auditoria",
+      "description": "Entregar gerar trilha de auditoria como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Gerar trilha de auditoria funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.registrar-nao-conformidade"
+      ],
+      "defaultStage": 11
+    },
+    {
+      "catalogKey": "controlled-procedure.exportar-pacote-de-auditoria",
+      "track": "process-governance",
+      "module": "controlled-procedure",
+      "title": "Exportar pacote de auditoria",
+      "description": "Entregar exportar pacote de auditoria como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Exportar pacote de auditoria funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "controlled-procedure.gerar-trilha-de-auditoria"
+      ],
+      "defaultStage": 12
+    }
+  ]
+}

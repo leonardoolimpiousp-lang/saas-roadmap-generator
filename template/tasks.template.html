@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Universal SaaS Roadmap</title>
+  <style>
+    :root { --primary:#123047; --accent:#087a68; --surface:#ffffff; --bg:#f3f6f4; --text:#172b36; --muted:#64716f; --line:#d9e2de; --red:#b42318; --amber:#b54708; --shadow:0 18px 50px rgba(19,42,54,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--bg); font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    button,input,select { font:inherit; }
+    button { cursor:pointer; }
+    :focus-visible { outline:3px solid color-mix(in srgb,var(--accent) 60%,white); outline-offset:2px; }
+    .skip { position:fixed; left:16px; top:-60px; z-index:100; padding:10px 14px; color:white; background:var(--primary); border-radius:8px; }
+    .skip:focus { top:12px; }
+    .topbar { position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:24px; min-height:66px; padding:10px clamp(16px,4vw,56px); color:white; background:color-mix(in srgb,var(--primary) 95%,transparent); backdrop-filter:blur(16px); box-shadow:0 1px 0 rgba(255,255,255,.12); }
+    .brand { display:flex; align-items:center; gap:11px; min-width:210px; }
+    .mark { display:grid; place-items:center; width:38px; height:38px; color:var(--primary); background:white; border-radius:11px; font-weight:900; letter-spacing:-.05em; }
+    .brand strong,.brand small { display:block; }
+    .brand small { color:rgba(255,255,255,.66); font-size:11px; text-transform:uppercase; letter-spacing:.12em; }
+    nav { display:flex; gap:3px; overflow-x:auto; scrollbar-width:none; }
+    nav button,.header-action { border:0; color:rgba(255,255,255,.68); background:transparent; padding:8px 11px; border-radius:8px; white-space:nowrap; }
+    nav button:hover,nav button.active,.header-action:hover { color:white; background:rgba(255,255,255,.11); }
+    .header-actions { margin-left:auto; display:flex; gap:4px; }
+    main { width:min(1500px,calc(100% - 32px)); margin:0 auto; padding:34px 0 70px; }
+    .view { display:none; animation:enter .18s ease; }
+    .view.active { display:block; }
+    @keyframes enter { from { opacity:0; transform:translateY(4px); } }
+    .hero { position:relative; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr); gap:30px; min-height:330px; padding:clamp(28px,5vw,64px); color:white; background:var(--primary); border-radius:24px; box-shadow:var(--shadow); }
+    .hero::after { content:""; position:absolute; width:420px; height:420px; right:-180px; top:-180px; background:radial-gradient(circle,var(--accent),transparent 66%); opacity:.45; }
+    .hero-copy,.hero-side { position:relative; z-index:1; }
+    .eyebrow { margin:0 0 8px; color:var(--accent); font-size:11px; font-weight:850; text-transform:uppercase; letter-spacing:.15em; }
+    .hero .eyebrow { color:color-mix(in srgb,var(--accent) 55%,white); }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:860px; margin-bottom:16px; font-size:clamp(38px,6vw,76px); line-height:.97; letter-spacing:-.055em; }
+    h2 { margin-bottom:8px; font-size:clamp(25px,3vw,39px); line-height:1.05; letter-spacing:-.035em; }
+    h3 { margin-bottom:7px; font-size:16px; }
+    .hero p { max-width:780px; color:rgba(255,255,255,.76); font-size:17px; }
+    .hero-side { align-self:end; padding:20px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:16px; }
+    .hero-side strong { display:block; margin-bottom:8px; font-size:20px; }
+    .hero-side span { color:rgba(255,255,255,.68); }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin:34px 0 17px; }
+    .section-head p:not(.eyebrow) { max-width:680px; margin:0; color:var(--muted); }
+    .grid { display:grid; gap:16px; }
+    .kpis { grid-template-columns:repeat(5,minmax(0,1fr)); margin-top:18px; }
+    .two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .card { background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 30px rgba(19,42,54,.045); }
+    .kpi { padding:18px; }
+    .kpi span { color:var(--muted); font-size:12px; }
+    .kpi strong { display:block; margin-top:5px; font-size:27px; letter-spacing:-.04em; }
+    .panel { padding:22px; }
+    .muted { color:var(--muted); }
+    .pill { display:inline-flex; gap:6px; align-items:center; padding:5px 9px; border-radius:999px; color:var(--primary); background:color-mix(in srgb,var(--accent) 13%,white); font-size:11px; font-weight:800; }
+    .progress { height:8px; overflow:hidden; background:#e6ece9; border-radius:99px; }
+    .progress i { display:block; height:100%; width:0; background:var(--accent); border-radius:inherit; }
+    .summary-list { display:grid; gap:12px; }
+    .summary-row { display:grid; grid-template-columns:140px 1fr auto; gap:14px; align-items:center; }
+    .timeline { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:15px; }
+    .phase { --phase:#64748b; position:relative; overflow:hidden; min-height:220px; padding:20px; background:var(--surface); border:1px solid var(--line); border-top:5px solid var(--phase); border-radius:15px; }
+    .phase-num { color:var(--phase); font-size:11px; font-weight:850; text-transform:uppercase; letter-spacing:.1em; }
+    .phase h3 { margin-top:20px; font-size:20px; }
+    .phase p { color:var(--muted); }
+    .phase footer { position:absolute; left:20px; right:20px; bottom:18px; display:flex; justify-content:space-between; color:var(--muted); }
+    .phase .progress { position:absolute; left:20px; right:20px; bottom:48px; }
+    .filters { position:sticky; top:66px; z-index:20; display:grid; grid-template-columns:minmax(220px,2fr) repeat(4,minmax(120px,1fr)); gap:8px; padding:12px; background:color-mix(in srgb,var(--bg) 94%,transparent); border:1px solid var(--line); border-radius:14px; backdrop-filter:blur(14px); }
+    .filters input,.filters select,.status-select { min-width:0; width:100%; height:38px; padding:0 10px; color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:9px; }
+    .secondary-filters { display:grid; grid-template-columns:repeat(5,minmax(120px,1fr)); gap:8px; grid-column:1/-1; }
+    .toolbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:14px 0; }
+    .btns { display:flex; flex-wrap:wrap; gap:7px; }
+    .btn { padding:8px 11px; color:var(--primary); background:var(--surface); border:1px solid var(--line); border-radius:8px; font-weight:750; }
+    .btn:hover { border-color:var(--accent); }
+    .btn.primary { color:white; background:var(--primary); border-color:var(--primary); }
+    .task-list { display:grid; gap:8px; }
+    .task { display:grid; grid-template-columns:100px minmax(240px,2fr) 150px 70px 60px minmax(130px,1fr) 42px 140px; align-items:center; gap:10px; padding:12px 14px; background:var(--surface); border:1px solid var(--line); border-radius:11px; }
+    .task:hover { border-color:color-mix(in srgb,var(--accent) 55%,var(--line)); }
+    .task.highlight { animation:flash 1.5s ease; border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent); }
+    @keyframes flash { 50% { background:color-mix(in srgb,var(--accent) 9%,white); } }
+    .task-id { color:var(--primary); font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .task-title { min-width:0; }
+    .task-title strong,.task-title small { display:block; }
+    .task-title small { margin-top:3px; color:var(--muted); font-size:11px; overflow-wrap:anywhere; }
+    .badge { overflow:hidden; padding:5px 7px; color:var(--badge); background:color-mix(in srgb,var(--badge) 11%,white); border-radius:7px; font-size:11px; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
+    .expand { width:34px; height:34px; color:var(--primary); background:transparent; border:1px solid var(--line); border-radius:8px; }
+    .task.open .expand { transform:rotate(45deg); }
+    .task-detail { display:none; grid-column:1/-1; grid-template-columns:1.1fr 1fr 1fr; gap:22px; padding:18px 4px 5px; border-top:1px solid var(--line); }
+    .task.open .task-detail { display:grid; }
+    .task-detail h4 { margin:0 0 7px; }
+    .task-detail p,.task-detail li { color:var(--muted); }
+    .task-detail ul { margin:0; padding-left:18px; }
+    .dep { margin:2px; padding:5px 8px; font:700 11px ui-monospace,monospace; }
+    .critical-chain { display:flex; gap:8px; overflow-x:auto; padding:4px 0 14px; }
+    .critical-node { flex:0 0 auto; min-width:150px; padding:10px 12px; text-align:left; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--red); border-radius:9px; }
+    .critical-node b,.critical-node small { display:block; }
+    .critical-node small { color:var(--muted); }
+    .table-wrap { overflow:auto; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { padding:11px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
+    .risk-high,.risk-critical { color:var(--red); font-weight:800; }
+    .risk-medium { color:var(--amber); font-weight:800; }
+    .metric { display:grid; grid-template-columns:minmax(150px,1fr) 2fr auto; align-items:center; gap:12px; margin:14px 0; }
+    .arch { display:grid; gap:9px; }
+    .arch-layer { padding:13px; background:var(--bg); border-left:4px solid var(--accent); border-radius:8px; }
+    .arch-layer b,.arch-layer span { display:block; }
+    .arch-layer span { margin-top:3px; color:var(--muted); }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; }
+    .flow-step { position:relative; padding:16px; background:var(--surface); border:1px solid var(--line); border-radius:12px; }
+    .flow-step span { color:var(--accent); font-size:10px; font-weight:900; letter-spacing:.1em; }
+    .empty { display:none; padding:50px; text-align:center; color:var(--muted); }
+    .toast { position:fixed; right:22px; bottom:22px; z-index:80; transform:translateY(120px); padding:12px 16px; color:white; background:var(--primary); border-radius:10px; box-shadow:var(--shadow); transition:.2s; }
+    .toast.show { transform:translateY(0); }
+    dialog { max-width:520px; color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); }
+    dialog::backdrop { background:rgba(8,25,35,.55); }
+    kbd { padding:2px 6px; background:var(--bg); border:1px solid var(--line); border-radius:5px; }
+    @media (max-width:1100px) { .kpis { grid-template-columns:repeat(3,1fr); } .task { grid-template-columns:90px minmax(220px,2fr) 130px 60px 50px 42px 130px; } .task-owner { display:none; } .filters { grid-template-columns:repeat(3,1fr); } .secondary-filters { grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:760px) { .topbar { align-items:flex-start; flex-wrap:wrap; } .brand { min-width:0; } nav { order:3; width:100%; } main { width:calc(100% - 20px); padding-top:18px; } .hero,.two,.three { grid-template-columns:1fr; } .hero { min-height:0; padding:28px; } .kpis { grid-template-columns:1fr 1fr; } .filters,.secondary-filters { position:static; grid-template-columns:repeat(2,minmax(0,1fr)); } .toolbar { flex-direction:column; align-items:stretch; } .toolbar .btns { width:100%; } .task { grid-template-columns:78px minmax(0,1fr) 40px; } .task-track,.task-phase,.task-priority,.task-owner,.task-status { grid-column:auto; } .task-track,.task-phase,.task-priority { display:none; } .task-status { grid-column:1/-1; } .task-detail { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .summary-row { grid-template-columns:100px 1fr; } .summary-row strong { grid-column:2; } }
+    @media (max-width:520px) { .header-actions { display:none; } .section-head { align-items:flex-start; flex-direction:column; } .section-head p:not(.eyebrow) { max-width:none; } .kpis,.filters,.secondary-filters { grid-template-columns:1fr; } .hero { padding:24px; } h1 { font-size:40px; } .task { grid-template-columns:70px minmax(0,1fr) 38px; padding:11px; } .toolbar .btns .btn { flex:1 1 auto; } }
+    @media print { body { background:white; font-size:10px; } .topbar,.filters,.toolbar .btns,.expand,.toast,dialog { display:none !important; } main { width:100%; padding:0; } .view { display:block !important; page-break-before:always; } .view:first-child { page-break-before:auto; } .hero { color:var(--text); background:white; border:2px solid var(--primary); box-shadow:none; } .hero p,.hero-side span { color:var(--muted); } .hero-side { border-color:var(--line); } .task { break-inside:avoid; grid-template-columns:70px 2fr 100px 50px 45px 100px; } .task-status,.expand { display:none; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Pular para o conteúdo</a>
+  <header class="topbar">
+    <div class="brand"><div class="mark" id="brandMark">SR</div><div><strong id="brandName">SaaS Roadmap</strong><small>Execution system</small></div></div>
+    <nav aria-label="Seções do roadmap">
+      <button class="active" data-view="overview">Visão geral</button><button data-view="timeline">Timeline</button><button data-view="backlog">Backlog</button><button data-view="architecture">Arquitetura</button><button data-view="governance">Governança</button><button data-view="quality">Riscos & métricas</button>
+    </nav>
+    <div class="header-actions"><button class="header-action" id="printBtn">Imprimir</button><button class="header-action" id="helpBtn" aria-label="Abrir ajuda">?</button></div>
+  </header>
+  <main id="content">
+    <section class="view active" id="overview">
+      <div class="hero"><div class="hero-copy"><p class="eyebrow">Roadmap adaptativo</p><h1 id="heroTitle"></h1><p id="heroDescription"></p></div><aside class="hero-side"><span>North Star</span><strong id="northStar"></strong><span id="horizon"></span></aside></div>
+      <div class="grid kpis"><article class="card kpi"><span>Tarefas totais</span><strong id="kpiTotal">0</strong></article><article class="card kpi"><span>Ativas</span><strong id="kpiActive">0</strong></article><article class="card kpi"><span>Progresso</span><strong id="kpiProgress">0%</strong></article><article class="card kpi"><span>Critical path</span><strong id="kpiCritical">0</strong></article><article class="card kpi"><span>Fases</span><strong id="kpiPhases">0</strong></article></div>
+      <div class="section-head"><div><p class="eyebrow">Portfólio</p><h2>Progresso por trilha</h2></div><p>Itens N/A permanecem auditáveis, mas não entram no denominador de progresso.</p></div>
+      <div class="grid two"><article class="card panel"><div class="summary-list" id="trackProgress"></div></article><article class="card panel"><h3>Limites explícitos</h3><ul class="muted" id="outOfScope"></ul></article></div>
+    </section>
+
+    <section class="view" id="timeline"><div class="section-head"><div><p class="eyebrow">Sequenciamento</p><h2>Timeline e release gates</h2></div><p>Fases representam outcomes aprováveis; duração continua sendo hipótese de capacidade.</p></div><div class="timeline" id="timelineGrid"></div><div class="section-head"><div><p class="eyebrow">Caminho crítico</p><h2>Maior peso acumulado no DAG</h2></div></div><div class="critical-chain" id="criticalChain"></div></section>
+
+    <section class="view" id="backlog">
+      <div class="section-head"><div><p class="eyebrow">Execução</p><h2>Backlog canônico</h2></div><p>Busque por ID, chave estável, tarefa, épico, descrição ou responsável.</p></div>
+      <div class="filters" aria-label="Filtros"><input id="searchInput" type="search" placeholder="Buscar ID ou tarefa…" aria-label="Buscar tarefas" /><select id="phaseFilter"><option value="">Todas as fases</option></select><select id="trackFilter"><option value="">Todas as trilhas</option></select><select id="moduleFilter"><option value="">Todos os módulos</option></select><select id="priorityFilter"><option value="">Prioridades</option><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select><div class="secondary-filters"><select id="ownerFilter"><option value="">Todos os responsáveis</option></select><select id="statusFilter"><option value="">Todos os status</option></select><select id="originFilter"><option value="">Todas as origens</option><option value="core">Core</option><option value="conditional">Condicional</option><option value="domain-specific">Domínio</option></select><select id="applicabilityFilter"><option value="">Toda aplicabilidade</option><option value="included">Incluída</option><option value="uncertain">Incerta</option><option value="not_applicable">N/A</option></select><button class="btn" id="clearFilters">Limpar filtros</button></div></div>
+      <div class="toolbar"><strong id="resultCount"></strong><div class="btns"><button class="btn" id="exportJson">JSON</button><button class="btn" id="exportCsv">CSV</button><button class="btn" id="exportMd">Markdown</button><button class="btn" id="importBtn">Importar estado</button><button class="btn" id="resetBtn">Resetar</button><input id="importFile" type="file" accept="application/json" hidden /></div></div>
+      <div class="task-list" id="taskList"></div><div class="card empty" id="emptyState">Nenhuma tarefa corresponde aos filtros.</div>
+    </section>
+
+    <section class="view" id="architecture"><div class="section-head"><div><p class="eyebrow">Sistema</p><h2>Arquitetura e módulos</h2></div><p>Camadas confirmadas na entrevista e matriz completa de aplicabilidade.</p></div><div class="grid two"><article class="card panel"><h3>Camadas</h3><div class="arch" id="architectureLayers"></div></article><article class="card panel table-wrap"><h3>Matriz de módulos</h3><table><thead><tr><th>Módulo</th><th>Estado</th><th>Razão</th></tr></thead><tbody id="moduleMatrix"></tbody></table></article></div></section>
+
+    <section class="view" id="governance"><div class="section-head"><div><p class="eyebrow">Governança</p><h2>Responsabilidade humana e fluxo de entrega</h2></div></div><div class="flow"><article class="flow-step"><span>ISSUE</span><h3>Intenção</h3><p class="muted">Objetivo, risco e aceite.</p></article><article class="flow-step"><span>BRANCH</span><h3>Mudança curta</h3><p class="muted">Escopo reversível.</p></article><article class="flow-step"><span>REVIEW</span><h3>Outra pessoa</h3><p class="muted">Evidência e riscos.</p></article><article class="flow-step"><span>QA</span><h3>Ambiente real</h3><p class="muted">Jornada e rollback.</p></article><article class="flow-step"><span>RELEASE</span><h3>Gate</h3><p class="muted">Outcome mensurável.</p></article></div><div class="section-head"><div><p class="eyebrow">RACI</p><h2>Quem decide e executa</h2></div></div><article class="card panel table-wrap"><table><thead><tr><th>Área</th><th>Responsável</th><th>Accountable</th><th>Consultados</th><th>Informados</th></tr></thead><tbody id="raciRows"></tbody></table></article><div class="grid two" style="margin-top:16px"><article class="card panel"><h3>Definition of Ready</h3><ul class="muted"><li>Outcome e usuário afetado explícitos.</li><li>Critérios verificáveis.</li><li>Dependências e owner identificados.</li><li>Risco e aplicabilidade classificados.</li></ul></article><article class="card panel"><h3>Definition of Done</h3><ul class="muted"><li>Testes proporcionais ao risco.</li><li>Revisão humana independente.</li><li>Evidência anexada e documentação atualizada.</li><li>Rollback ou feature flag quando necessário.</li></ul></article></div></section>
+
+    <section class="view" id="quality"><div class="section-head"><div><p class="eyebrow">Readiness</p><h2>Riscos e métricas</h2></div><p>Os indicadores são gates, não decoração de dashboard.</p></div><div class="grid two"><article class="card panel table-wrap"><table><thead><tr><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Owner</th><th>Mitigação</th></tr></thead><tbody id="riskRows"></tbody></table></article><article class="card panel"><h3>Scorecard</h3><div id="metrics"></div></article></div></section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="helpDialog"><h3>Atalhos</h3><p><kbd>/</kbd> abre a busca<br /><kbd>Esc</kbd> limpa a busca ou fecha a ajuda<br /><kbd>?</kbd> mostra esta janela</p><div class="btns"><button class="btn primary" id="closeHelp">Fechar</button></div></dialog>
+
+  <script>
+    const roadmap = __ROADMAP_PAYLOAD__;
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+    const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
+    const safeColor = (value, fallback) => /^#[0-9a-f]{6}$/i.test(value || "") ? value : fallback;
+    const statusLabels = { backlog:"Backlog", ready:"Ready", doing:"Em curso", review:"Revisão", done:"Concluído", blocked:"Bloqueado", not_applicable:"N/A" };
+    const originLabels = { core:"Core", conditional:"Condicional", "domain-specific":"Domínio" };
+    const applicabilityLabels = { included:"Incluída", uncertain:"Incerta", not_applicable:"N/A" };
+    document.documentElement.style.setProperty("--primary",safeColor(roadmap.theme.primary,"#123047"));
+    document.documentElement.style.setProperty("--accent",safeColor(roadmap.theme.accent,"#087a68"));
+    document.documentElement.style.setProperty("--surface",safeColor(roadmap.theme.surface,"#ffffff"));
+    document.documentElement.style.setProperty("--bg",safeColor(roadmap.theme.background,"#f3f6f4"));
+    document.documentElement.style.setProperty("--text",safeColor(roadmap.theme.text,"#172b36"));
+    document.title = `${roadmap.project.name} — SaaS Roadmap`;
+    const storageKey = `saas-roadmap:${roadmap.project.slug}:${roadmap.schemaVersion}`;
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch { localStorage.removeItem(storageKey); }
+    roadmap.tasks.forEach(task => { if (saved[task.id] && statusLabels[saved[task.id]]) task.status = saved[task.id]; });
+    const save = () => localStorage.setItem(storageKey,JSON.stringify(Object.fromEntries(roadmap.tasks.map(task => [task.id,task.status]))));
+    const activeTasks = () => roadmap.tasks.filter(task => task.applicability !== "not_applicable");
+    const progress = tasks => tasks.length ? Math.round(tasks.filter(task => task.status === "done").length / tasks.length * 100) : 0;
+    const toast = message => { const element=$("#toast"); element.textContent=message; element.classList.add("show"); clearTimeout(window.toastTimer); window.toastTimer=setTimeout(()=>element.classList.remove("show"),2500); };
+    const initials = roadmap.project.name.split(/\s+/).slice(0,2).map(word => word[0]).join("").toUpperCase();
+    $("#brandMark").textContent=initials; $("#brandName").textContent=roadmap.project.name; $("#heroTitle").textContent=roadmap.project.name; $("#heroDescription").textContent=roadmap.project.description; $("#northStar").textContent=roadmap.project.northStar; $("#horizon").textContent=`${roadmap.timelineMonths} meses · ${roadmap.phases.length} fases`;
+
+    function updateKpis() { const active=activeTasks(); $("#kpiTotal").textContent=roadmap.tasks.length; $("#kpiActive").textContent=active.length; $("#kpiProgress").textContent=`${progress(active)}%`; $("#kpiCritical").textContent=roadmap.criticalPath.length; $("#kpiPhases").textContent=roadmap.phases.length; }
+    function renderOverview() {
+      $("#trackProgress").innerHTML=Object.entries(roadmap.tracks).map(([id,meta])=>{const list=activeTasks().filter(task=>task.track===id);if(!list.length)return "";const value=progress(list);return `<div class="summary-row"><b>${escapeHtml(meta.label)}</b><div class="progress"><i style="width:${value}%;background:${safeColor(meta.color,"#64748b")}"></i></div><strong>${value}%</strong></div>`}).join("");
+      $("#outOfScope").innerHTML=(roadmap.outOfScope.length?roadmap.outOfScope:["Nenhum limite explícito registrado."]).map(item=>`<li>${escapeHtml(item)}</li>`).join("");
+    }
+    function renderTimeline() {
+      $("#timelineGrid").innerHTML=roadmap.phases.map(phase=>{const list=activeTasks().filter(task=>task.phase===phase.id),value=progress(list);return `<article class="phase" style="--phase:${safeColor(phase.color,"#64748b")}"><span class="phase-num">${escapeHtml(phase.id)} · ${escapeHtml(phase.window)}</span><h3>${escapeHtml(phase.name)}</h3><p>${escapeHtml(phase.gate)}</p><div class="progress"><i style="width:${value}%;background:${safeColor(phase.color,"#64748b")}"></i></div><footer><span>${list.length} tarefas</span><strong>${value}%</strong></footer></article>`}).join("");
+      const byId=new Map(roadmap.tasks.map(task=>[task.id,task])); $("#criticalChain").innerHTML=roadmap.criticalPath.map((id,index)=>{const task=byId.get(id);return `<button class="critical-node" data-jump="${escapeHtml(id)}"><b>${index+1}. ${escapeHtml(id)}</b><small>${escapeHtml(task?.title||"")}</small></button>`}).join("");
+    }
+    function fillFilters() {
+      $("#phaseFilter").insertAdjacentHTML("beforeend",roadmap.phases.map(phase=>`<option value="${escapeHtml(phase.id)}">${escapeHtml(phase.id)} · ${escapeHtml(phase.name)}</option>`).join(""));
+      $("#trackFilter").insertAdjacentHTML("beforeend",Object.entries(roadmap.tracks).map(([id,meta])=>`<option value="${escapeHtml(id)}">${escapeHtml(meta.label)}</option>`).join(""));
+      const unique=(key)=>[...new Set(roadmap.tasks.map(task=>task[key]))].sort();
+      $("#moduleFilter").insertAdjacentHTML("beforeend",unique("module").map(value=>`<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join(""));
+      $("#ownerFilter").insertAdjacentHTML("beforeend",unique("ownerRole").map(value=>`<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join(""));
+      $("#statusFilter").insertAdjacentHTML("beforeend",Object.entries(statusLabels).map(([value,label])=>`<option value="${value}">${label}</option>`).join(""));
+    }
+    const filterIds=["searchInput","phaseFilter","trackFilter","moduleFilter","priorityFilter","ownerFilter","statusFilter","originFilter","applicabilityFilter"];
+    function filteredTasks() { const q=$("#searchInput").value.trim().toLowerCase();return roadmap.tasks.filter(task=>(!q||[task.id,task.catalogKey,task.title,task.epic,task.description,task.ownerRole].some(value=>String(value).toLowerCase().includes(q)))&&(!$("#phaseFilter").value||task.phase===$("#phaseFilter").value)&&(!$("#trackFilter").value||task.track===$("#trackFilter").value)&&(!$("#moduleFilter").value||task.module===$("#moduleFilter").value)&&(!$("#priorityFilter").value||task.priority===$("#priorityFilter").value)&&(!$("#ownerFilter").value||task.ownerRole===$("#ownerFilter").value)&&(!$("#statusFilter").value||task.status===$("#statusFilter").value)&&(!$("#originFilter").value||task.origin===$("#originFilter").value)&&(!$("#applicabilityFilter").value||task.applicability===$("#applicabilityFilter").value)); }
+    function renderTasks() {
+      const list=filteredTasks(); $("#resultCount").textContent=`${list.length} ${list.length===1?"tarefa":"tarefas"}`; $("#emptyState").style.display=list.length?"none":"block";
+      $("#taskList").innerHTML=list.map(task=>{const track=roadmap.tracks[task.track]||{label:task.track,color:"#64748b"};return `<article class="task" id="task-${escapeHtml(task.id)}" data-id="${escapeHtml(task.id)}"><span class="task-id">${escapeHtml(task.id)}${task.critical?" ◆":""}</span><div class="task-title"><strong>${escapeHtml(task.title)}</strong><small>${escapeHtml(task.catalogKey)} · ${escapeHtml(task.effort)} · ${escapeHtml(originLabels[task.origin])}</small></div><span class="task-track badge" style="--badge:${safeColor(track.color,"#64748b")}">${escapeHtml(track.label)}</span><span class="task-phase badge" style="--badge:#475467">${escapeHtml(task.phase)}</span><span class="task-priority badge" style="--badge:${task.priority==="P0"?"#b42318":task.priority==="P1"?"#b54708":"#667085"}">${escapeHtml(task.priority)}</span><span class="task-owner muted">${escapeHtml(task.ownerRole)}</span><button class="expand" aria-label="Abrir detalhes de ${escapeHtml(task.id)}">＋</button><div class="task-status"><select class="status-select" aria-label="Status de ${escapeHtml(task.id)}" ${task.applicability==="not_applicable"?"disabled":""}>${Object.entries(statusLabels).map(([value,label])=>`<option value="${value}" ${task.status===value?"selected":""}>${label}</option>`).join("")}</select></div><div class="task-detail"><div><h4>Objetivo</h4><p>${escapeHtml(task.description)}</p><h4>Racional</h4><p>${escapeHtml(task.rationale)}</p></div><div><h4>Critérios de aceite</h4><ul>${task.acceptanceCriteria.map(item=>`<li>${escapeHtml(item)}</li>`).join("")}</ul></div><div><h4>Dependências</h4><p>${task.dependencies.length?task.dependencies.map(id=>`<button class="btn dep" data-dep="${escapeHtml(id)}">${escapeHtml(id)}</button>`).join(" "):"Nenhuma"}</p><h4>Aplicabilidade</h4><p>${escapeHtml(applicabilityLabels[task.applicability])}${task.exclusionReason?` — ${escapeHtml(task.exclusionReason)}`:""}</p><h4>Gate</h4><p>${escapeHtml(task.releaseGate)}</p></div></div></article>`}).join("");
+      $$(".task .expand").forEach(button=>button.onclick=()=>button.closest(".task").classList.toggle("open"));
+      $$(".status-select").forEach(select=>select.onchange=()=>{const task=roadmap.tasks.find(item=>item.id===select.closest(".task").dataset.id);task.status=select.value;save();updateKpis();renderOverview();renderTimeline();toast("Status salvo neste navegador.");});
+      $$(".dep").forEach(button=>button.onclick=()=>jumpToTask(button.dataset.dep));
+    }
+    function jumpToTask(id) { activateView("backlog"); filterIds.forEach(filterId=>$("#"+filterId).value=""); $("#searchInput").value=id; renderTasks(); const element=document.getElementById(`task-${id}`); if(element){element.classList.add("highlight","open");element.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>element.classList.remove("highlight"),1800);} }
+    function renderArchitecture() { $("#architectureLayers").innerHTML=roadmap.architecture.map(item=>`<div class="arch-layer"><b>${escapeHtml(item.layer)}</b><span>${escapeHtml(item.description)}</span></div>`).join(""); $("#moduleMatrix").innerHTML=Object.entries(roadmap.moduleMatrix).map(([module,decision])=>`<tr><td>${escapeHtml(module)}</td><td>${escapeHtml(applicabilityLabels[decision.status])}</td><td>${escapeHtml(decision.reason)}</td></tr>`).join(""); }
+    function renderGovernance() { $("#raciRows").innerHTML=roadmap.raci.map(item=>`<tr><td>${escapeHtml(item.area)}</td><td>${escapeHtml(item.responsible)}</td><td>${escapeHtml(item.accountable)}</td><td>${escapeHtml(item.consulted.join(", "))}</td><td>${escapeHtml(item.informed.join(", "))}</td></tr>`).join(""); }
+    function renderQuality() { $("#riskRows").innerHTML=roadmap.risks.map(risk=>`<tr><td>${escapeHtml(risk.id)} · ${escapeHtml(risk.title)}</td><td class="risk-${escapeHtml(risk.probability)}">${escapeHtml(risk.probability)}</td><td class="risk-${escapeHtml(risk.impact)}">${escapeHtml(risk.impact)}</td><td>${escapeHtml(risk.owner)}</td><td>${escapeHtml(risk.mitigation)}</td></tr>`).join(""); $("#metrics").innerHTML=roadmap.metrics.map(metric=>`<div class="metric"><span>${escapeHtml(metric.name)}</span><div class="progress"><i style="width:${Math.max(0,Math.min(100,Number(metric.progress)||0))}%"></i></div><strong>${escapeHtml(metric.target)}</strong></div>`).join(""); }
+    function activateView(id,updateHash=true) { const button=$(`nav button[data-view="${id}"]`),view=document.getElementById(id);if(!button||!view)return;$$(`nav button,.view`).forEach(element=>element.classList.remove("active"));button.classList.add("active");view.classList.add("active");if(updateHash)history.replaceState(null,"",`#${id}`);window.scrollTo({top:0,behavior:updateHash?"smooth":"instant"}); }
+    function download(name,type,content) { const url=URL.createObjectURL(new Blob([content],{type}));const anchor=document.createElement("a");anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),0); }
+    function currentExport() { return {...roadmap,exportedAt:new Date().toISOString(),tasks:roadmap.tasks.map(task=>({...task}))}; }
+    function exportJson() { download(`${roadmap.project.slug}-roadmap.json`,"application/json",JSON.stringify(currentExport(),null,2)); }
+    function exportCsv() { const cols=["id","catalogKey","origin","module","phase","track","epic","title","priority","effort","ownerRole","status","applicability","dependencies"];const rows=[cols.join(","),...roadmap.tasks.map(task=>cols.map(key=>`"${String(Array.isArray(task[key])?task[key].join("|"):task[key]??"").replaceAll('"','""')}"`).join(","))];download(`${roadmap.project.slug}-roadmap.csv`,"text/csv;charset=utf-8",rows.join("\n")); }
+    function exportMarkdown() { const lines=[`# ${roadmap.project.name} — SaaS Roadmap`,"",`**North Star:** ${roadmap.project.northStar}`,""];roadmap.phases.forEach(phase=>{lines.push(`## ${phase.id} — ${phase.name}`,"",`**Gate:** ${phase.gate}`,"");roadmap.tasks.filter(task=>task.phase===phase.id&&task.applicability!=="not_applicable").forEach(task=>lines.push(`- [${task.status==="done"?"x":" "}] **${task.id}** ${task.title} · ${task.priority} · ${task.ownerRole}`));lines.push("");});download(`${roadmap.project.slug}-backlog.md`,"text/markdown",lines.join("\n")); }
+    $$(`nav button`).forEach(button=>button.onclick=()=>activateView(button.dataset.view));
+    filterIds.forEach(id=>$("#"+id).addEventListener(id==="searchInput"?"input":"change",renderTasks));
+    $("#clearFilters").onclick=()=>{filterIds.forEach(id=>$("#"+id).value="");renderTasks();};
+    $("#exportJson").onclick=exportJson; $("#exportCsv").onclick=exportCsv; $("#exportMd").onclick=exportMarkdown; $("#importBtn").onclick=()=>$("#importFile").click();
+    $("#importFile").onchange=event=>{const file=event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const incoming=JSON.parse(reader.result);if(incoming.project?.slug!==roadmap.project.slug)throw new Error("Este arquivo pertence a outro projeto.");if(!Array.isArray(incoming.tasks))throw new Error("Arquivo sem tarefas.");if(!confirm(`Importar o estado de ${incoming.tasks.length} tarefas para ${roadmap.project.name}?`))return;const statuses=new Map(incoming.tasks.filter(task=>statusLabels[task.status]).map(task=>[task.id,task.status]));roadmap.tasks.forEach(task=>{if(statuses.has(task.id)&&task.applicability!=="not_applicable")task.status=statuses.get(task.id);});save();renderAll();toast("Estado importado com sucesso.");}catch(error){toast(error.message||"Arquivo inválido.");}};reader.readAsText(file);event.target.value="";};
+    $("#resetBtn").onclick=()=>{if(confirm("Resetar todos os status locais deste projeto?")){localStorage.removeItem(storageKey);roadmap.tasks.forEach(task=>task.status=task.applicability==="not_applicable"?"not_applicable":task.phase==="F0"?"ready":"backlog");renderAll();toast("Estado local resetado.");}};
+    $("#printBtn").onclick=()=>window.print(); const help=$("#helpDialog"); $("#helpBtn").onclick=()=>help.showModal(); $("#closeHelp").onclick=()=>help.close();
+    document.addEventListener("click",event=>{const target=event.target.closest("[data-jump]");if(target)jumpToTask(target.dataset.jump);});
+    document.addEventListener("keydown",event=>{if(event.key==="/"&&!/input|select|textarea/i.test(document.activeElement.tagName)){event.preventDefault();activateView("backlog");$("#searchInput").focus();}if(event.key==="?"){event.preventDefault();help.showModal();}if(event.key==="Escape"){if(help.open)help.close();else{$("#searchInput").value="";renderTasks();}}});
+    function renderAll(){updateKpis();renderOverview();renderTimeline();renderTasks();renderArchitecture();renderGovernance();renderQuality();}
+    fillFilters();renderAll();activateView(location.hash.slice(1)||"overview",false);window.addEventListener("load",()=>window.scrollTo({top:0,behavior:"instant"}),{once:true});
+  </script>
+</body>
+</html>

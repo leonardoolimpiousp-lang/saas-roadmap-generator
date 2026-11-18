@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadmap-kit.local/schemas/interview.schema.json",
+  "title": "Interview State",
+  "type": "object",
+  "required": ["version", "language", "currentBlock", "answers", "assumptions", "unknowns", "moduleMatrix", "confirmed"],
+  "properties": {
+    "version": { "const": "1.0.0" },
+    "language": { "type": "string" },
+    "currentBlock": { "type": "integer", "minimum": 0, "maximum": 12 },
+    "answers": { "type": "object" },
+    "assumptions": { "type": "array", "items": { "type": "object", "required": ["statement", "confidence"], "properties": { "statement": { "type": "string" }, "confidence": { "enum": ["low", "medium", "high"] } } } },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "moduleMatrix": { "type": "object", "additionalProperties": { "type": "object", "required": ["status", "reason"], "properties": { "status": { "enum": ["included", "not_applicable", "uncertain"] }, "reason": { "type": "string" } } } },
+    "confirmed": { "type": "boolean" }
+  }
+}
+

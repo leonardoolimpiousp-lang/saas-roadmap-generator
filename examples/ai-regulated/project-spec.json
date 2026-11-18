@@ -1,0 +1,411 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "name": "Care Signal",
+    "slug": "care-signal",
+    "prefix": "CARE",
+    "description": "SaaS regulado que auxilia equipes clínicas a priorizar documentos e sinais operacionais, mantendo revisão humana e evidência auditável.",
+    "stage": "validation",
+    "artifactLanguage": "pt-BR",
+    "northStar": "Casos priorizados corretamente e revisados dentro do tempo clínico definido.",
+    "outOfScope": [
+      "Decisão clínica autônoma",
+      "Dados sem base legal",
+      "Marketplace"
+    ],
+    "repositoryPath": null
+  },
+  "theme": {
+    "primary": "#102a43",
+    "accent": "#0e7490",
+    "surface": "#ffffff",
+    "background": "#f4f7f5",
+    "text": "#172b36",
+    "tone": "claro, direto e confiável",
+    "logoDataUrl": null
+  },
+  "timelineMonths": 18,
+  "team": [
+    {
+      "name": "CEO",
+      "role": "Produto clínico",
+      "capacity": "full-time"
+    },
+    {
+      "name": "CTO",
+      "role": "Engenharia",
+      "capacity": "full-time"
+    },
+    {
+      "name": "DPO",
+      "role": "Privacidade",
+      "capacity": "external"
+    },
+    {
+      "name": "Especialista",
+      "role": "Validação clínica",
+      "capacity": "part-time"
+    }
+  ],
+  "modules": {
+    "ai-automation": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "subscriptions": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "marketplace": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "teams-rbac": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "enterprise": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "document-processing": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "realtime-collaboration": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "public-api": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "mobile-pwa": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "regulated-data": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "internationalization": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "ugc-moderation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "data-migration": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "developer-product": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "community-referral": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "sales-customer-success": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    }
+  },
+  "architecture": [
+    {
+      "layer": "Experience",
+      "description": "Interface responsiva, acessível e orientada à jornada principal."
+    },
+    {
+      "layer": "Application",
+      "description": "Casos de uso, autorização, workflows e transações."
+    },
+    {
+      "layer": "Domain",
+      "description": "Entidades, políticas e invariantes independentes da infraestrutura."
+    },
+    {
+      "layer": "Infrastructure",
+      "description": "Persistência, filas, billing, notificações e integrações atrás de portas."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-DOMAIN",
+      "title": "Workflow principal não entrega o resultado prometido",
+      "probability": "medium",
+      "impact": "critical",
+      "owner": "Produto clínico",
+      "mitigation": "Validar a fatia vertical com usuários e fixtures representativas antes de expandir."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "activation",
+      "name": "Ativação",
+      "category": "product",
+      "target": "≥60%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "retention",
+      "name": "Retenção em 4 semanas",
+      "category": "product",
+      "target": "≥35%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "conversion",
+      "name": "Trial para pago",
+      "category": "commercial",
+      "target": "≥10%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "availability",
+      "name": "Disponibilidade mensal",
+      "category": "quality",
+      "target": "≥99,9%",
+      "direction": "maintain",
+      "progress": 0
+    },
+    {
+      "id": "security",
+      "name": "Vulnerabilidades críticas abertas",
+      "category": "security",
+      "target": "0",
+      "direction": "decrease",
+      "progress": 0
+    }
+  ],
+  "raci": [
+    {
+      "area": "Produto",
+      "responsible": "Produto clínico",
+      "accountable": "CEO",
+      "consulted": [
+        "CTO"
+      ],
+      "informed": [
+        "DPO"
+      ]
+    },
+    {
+      "area": "Engenharia",
+      "responsible": "CTO",
+      "accountable": "CEO",
+      "consulted": [
+        "Produto clínico"
+      ],
+      "informed": [
+        "DPO"
+      ]
+    },
+    {
+      "area": "Go to market",
+      "responsible": "DPO",
+      "accountable": "CEO",
+      "consulted": [
+        "Produto clínico"
+      ],
+      "informed": [
+        "CTO"
+      ]
+    },
+    {
+      "area": "Segurança e release",
+      "responsible": "CTO",
+      "accountable": "CEO",
+      "consulted": [
+        "DPO"
+      ],
+      "informed": [
+        "Produto clínico"
+      ]
+    }
+  ],
+  "domainTracks": [
+    "clinical-validation"
+  ],
+  "domainTasks": [
+    {
+      "catalogKey": "clinical-triage.definir-indicacao-de-uso",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Definir indicação de uso",
+      "description": "Entregar definir indicação de uso como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "L",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Definir indicação de uso funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [],
+      "defaultStage": 5
+    },
+    {
+      "catalogKey": "clinical-triage.definir-eventos-clinicos-criticos",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Definir eventos clínicos críticos",
+      "description": "Entregar definir eventos clínicos críticos como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "M",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Definir eventos clínicos críticos funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.definir-indicacao-de-uso"
+      ],
+      "defaultStage": 6
+    },
+    {
+      "catalogKey": "clinical-triage.criar-protocolo-de-anotacao",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Criar protocolo de anotação",
+      "description": "Entregar criar protocolo de anotação como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Criar protocolo de anotação funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.definir-eventos-clinicos-criticos"
+      ],
+      "defaultStage": 7
+    },
+    {
+      "catalogKey": "clinical-triage.construir-gold-dataset",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Construir gold dataset",
+      "description": "Entregar construir gold dataset como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Construir gold dataset funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.criar-protocolo-de-anotacao"
+      ],
+      "defaultStage": 8
+    },
+    {
+      "catalogKey": "clinical-triage.medir-sensibilidade",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Medir sensibilidade",
+      "description": "Entregar medir sensibilidade como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Medir sensibilidade funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.construir-gold-dataset"
+      ],
+      "defaultStage": 9
+    },
+    {
+      "catalogKey": "clinical-triage.medir-especificidade",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Medir especificidade",
+      "description": "Entregar medir especificidade como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Medir especificidade funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.medir-sensibilidade"
+      ],
+      "defaultStage": 10
+    },
+    {
+      "catalogKey": "clinical-triage.implementar-revisao-clinica",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Implementar revisão clínica",
+      "description": "Entregar implementar revisão clínica como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Implementar revisão clínica funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.medir-especificidade"
+      ],
+      "defaultStage": 11
+    },
+    {
+      "catalogKey": "clinical-triage.aprovar-validacao-clinica",
+      "track": "clinical-validation",
+      "module": "clinical-triage",
+      "title": "Aprovar validação clínica",
+      "description": "Entregar aprovar validação clínica como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto clínico",
+      "acceptanceCriteria": [
+        "Aprovar validação clínica funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "clinical-triage.implementar-revisao-clinica"
+      ],
+      "defaultStage": 12
+    }
+  ]
+}

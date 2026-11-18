@@ -1,0 +1,406 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "name": "Local Makers",
+    "slug": "local-makers",
+    "prefix": "LMKT",
+    "description": "Marketplace que conecta pequenos produtores locais a consumidores, com catálogo, disponibilidade, pedidos, reputação e retirada agendada.",
+    "stage": "mvp",
+    "artifactLanguage": "pt-BR",
+    "northStar": "Pedidos concluídos por comprador ativo sem intervenção do suporte.",
+    "outOfScope": [
+      "Logística própria",
+      "Crédito ao consumidor",
+      "Venda internacional na primeira release"
+    ],
+    "repositoryPath": null
+  },
+  "theme": {
+    "primary": "#422006",
+    "accent": "#d97706",
+    "surface": "#ffffff",
+    "background": "#f4f7f5",
+    "text": "#172b36",
+    "tone": "claro, direto e confiável",
+    "logoDataUrl": null
+  },
+  "timelineMonths": 14,
+  "team": [
+    {
+      "name": "CEO",
+      "role": "Marketplace e growth",
+      "capacity": "full-time"
+    },
+    {
+      "name": "Tech",
+      "role": "Engenharia",
+      "capacity": "full-time"
+    },
+    {
+      "name": "Ops",
+      "role": "Operação local",
+      "capacity": "full-time"
+    }
+  ],
+  "modules": {
+    "ai-automation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "subscriptions": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "marketplace": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "teams-rbac": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "enterprise": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "document-processing": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "realtime-collaboration": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "public-api": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "mobile-pwa": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "regulated-data": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "internationalization": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "ugc-moderation": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "data-migration": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "developer-product": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "community-referral": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "sales-customer-success": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    }
+  },
+  "architecture": [
+    {
+      "layer": "Experience",
+      "description": "Interface responsiva, acessível e orientada à jornada principal."
+    },
+    {
+      "layer": "Application",
+      "description": "Casos de uso, autorização, workflows e transações."
+    },
+    {
+      "layer": "Domain",
+      "description": "Entidades, políticas e invariantes independentes da infraestrutura."
+    },
+    {
+      "layer": "Infrastructure",
+      "description": "Persistência, filas, billing, notificações e integrações atrás de portas."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-DOMAIN",
+      "title": "Workflow principal não entrega o resultado prometido",
+      "probability": "medium",
+      "impact": "critical",
+      "owner": "Marketplace",
+      "mitigation": "Validar a fatia vertical com usuários e fixtures representativas antes de expandir."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "activation",
+      "name": "Ativação",
+      "category": "product",
+      "target": "≥60%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "retention",
+      "name": "Retenção em 4 semanas",
+      "category": "product",
+      "target": "≥35%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "conversion",
+      "name": "Trial para pago",
+      "category": "commercial",
+      "target": "≥10%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "availability",
+      "name": "Disponibilidade mensal",
+      "category": "quality",
+      "target": "≥99,9%",
+      "direction": "maintain",
+      "progress": 0
+    },
+    {
+      "id": "security",
+      "name": "Vulnerabilidades críticas abertas",
+      "category": "security",
+      "target": "0",
+      "direction": "decrease",
+      "progress": 0
+    }
+  ],
+  "raci": [
+    {
+      "area": "Produto",
+      "responsible": "Marketplace",
+      "accountable": "CEO",
+      "consulted": [
+        "Tech"
+      ],
+      "informed": [
+        "Ops"
+      ]
+    },
+    {
+      "area": "Engenharia",
+      "responsible": "Tech",
+      "accountable": "CEO",
+      "consulted": [
+        "Marketplace"
+      ],
+      "informed": [
+        "Ops"
+      ]
+    },
+    {
+      "area": "Go to market",
+      "responsible": "Ops",
+      "accountable": "CEO",
+      "consulted": [
+        "Marketplace"
+      ],
+      "informed": [
+        "Tech"
+      ]
+    },
+    {
+      "area": "Segurança e release",
+      "responsible": "Tech",
+      "accountable": "CEO",
+      "consulted": [
+        "Ops"
+      ],
+      "informed": [
+        "Marketplace"
+      ]
+    }
+  ],
+  "domainTracks": [
+    "local-commerce"
+  ],
+  "domainTasks": [
+    {
+      "catalogKey": "order-fulfillment.cadastrar-produtor",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Cadastrar produtor",
+      "description": "Entregar cadastrar produtor como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "L",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Cadastrar produtor funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [],
+      "defaultStage": 5
+    },
+    {
+      "catalogKey": "order-fulfillment.publicar-catalogo-local",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Publicar catálogo local",
+      "description": "Entregar publicar catálogo local como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "M",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Publicar catálogo local funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.cadastrar-produtor"
+      ],
+      "defaultStage": 6
+    },
+    {
+      "catalogKey": "order-fulfillment.gerenciar-disponibilidade",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Gerenciar disponibilidade",
+      "description": "Entregar gerenciar disponibilidade como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Gerenciar disponibilidade funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.publicar-catalogo-local"
+      ],
+      "defaultStage": 7
+    },
+    {
+      "catalogKey": "order-fulfillment.criar-pedido",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Criar pedido",
+      "description": "Entregar criar pedido como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Criar pedido funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.gerenciar-disponibilidade"
+      ],
+      "defaultStage": 8
+    },
+    {
+      "catalogKey": "order-fulfillment.confirmar-pagamento",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Confirmar pagamento",
+      "description": "Entregar confirmar pagamento como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Confirmar pagamento funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.criar-pedido"
+      ],
+      "defaultStage": 9
+    },
+    {
+      "catalogKey": "order-fulfillment.agendar-retirada",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Agendar retirada",
+      "description": "Entregar agendar retirada como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Agendar retirada funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.confirmar-pagamento"
+      ],
+      "defaultStage": 10
+    },
+    {
+      "catalogKey": "order-fulfillment.confirmar-entrega",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Confirmar entrega",
+      "description": "Entregar confirmar entrega como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Confirmar entrega funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.agendar-retirada"
+      ],
+      "defaultStage": 11
+    },
+    {
+      "catalogKey": "order-fulfillment.avaliar-transacao",
+      "track": "local-commerce",
+      "module": "order-fulfillment",
+      "title": "Avaliar transação",
+      "description": "Entregar avaliar transação como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Marketplace",
+      "acceptanceCriteria": [
+        "Avaliar transação funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "order-fulfillment.confirmar-entrega"
+      ],
+      "defaultStage": 12
+    }
+  ]
+}

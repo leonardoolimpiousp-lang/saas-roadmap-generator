@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadmap-kit.local/schemas/project-spec.schema.json",
+  "title": "SaaS Roadmap Project Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "project", "theme", "timelineMonths", "team", "modules", "architecture", "risks", "metrics", "raci", "domainTasks"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "project": {
+      "type": "object",
+      "required": ["name", "slug", "prefix", "description", "stage", "artifactLanguage", "northStar"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "prefix": { "type": "string", "pattern": "^[A-Z][A-Z0-9]{1,7}$" },
+        "description": { "type": "string", "minLength": 20 },
+        "stage": { "enum": ["idea", "validation", "mvp", "revenue", "scale"] },
+        "artifactLanguage": { "type": "string" },
+        "northStar": { "type": "string", "minLength": 10 },
+        "outOfScope": { "type": "array", "items": { "type": "string" } },
+        "repositoryPath": { "type": ["string", "null"] }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "required": ["primary", "accent", "surface", "background", "text", "tone"],
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "accent": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "surface": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "background": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "text": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "tone": { "type": "string" },
+        "logoDataUrl": { "type": ["string", "null"] }
+      }
+    },
+    "timelineMonths": { "type": "integer", "minimum": 6, "maximum": 18 },
+    "team": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["role", "capacity"], "properties": { "name": { "type": "string" }, "role": { "type": "string" }, "capacity": { "enum": ["part-time", "full-time", "external"] } } } },
+    "modules": { "type": "object", "additionalProperties": { "type": "object", "required": ["status", "reason"], "properties": { "status": { "enum": ["included", "not_applicable", "uncertain"] }, "reason": { "type": "string" } } } },
+    "architecture": { "type": "array", "minItems": 3, "items": { "type": "object", "required": ["layer", "description"], "properties": { "layer": { "type": "string" }, "description": { "type": "string" } } } },
+    "risks": { "type": "array", "minItems": 1, "items": { "$ref": "risk.schema.json" } },
+    "metrics": { "type": "array", "minItems": 1, "items": { "$ref": "metric.schema.json" } },
+    "raci": { "type": "array", "minItems": 1, "items": { "$ref": "raci.schema.json" } },
+    "domainTracks": { "type": "array", "items": { "type": "string" } },
+    "domainTasks": { "type": "array", "items": { "type": "object", "required": ["catalogKey", "track", "module", "title", "description", "rationale", "priority", "effort", "ownerRole", "acceptanceCriteria", "riskIds", "defaultStage"], "properties": { "catalogKey": { "type": "string" }, "track": { "type": "string" }, "module": { "type": "string" }, "title": { "type": "string" }, "description": { "type": "string" }, "rationale": { "type": "string" }, "priority": { "enum": ["P0", "P1", "P2", "P3"] }, "effort": { "enum": ["XS", "S", "M", "L", "XL"] }, "ownerRole": { "type": "string" }, "acceptanceCriteria": { "type": "array", "minItems": 2, "items": { "type": "string" } }, "riskIds": { "type": "array", "items": { "type": "string" } }, "dependsOnCatalogKeys": { "type": "array", "items": { "type": "string" } }, "defaultStage": { "type": "integer", "minimum": 0, "maximum": 13 } } } }
+  }
+}
+

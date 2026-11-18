@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadmap-kit.local/schemas/metric.schema.json",
+  "title": "Roadmap Metric",
+  "type": "object",
+  "required": ["id", "name", "category", "target", "direction"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string" },
+    "target": { "type": "string" },
+    "direction": { "enum": ["increase", "decrease", "maintain", "binary"] },
+    "progress": { "type": "number", "minimum": 0, "maximum": 100 }
+  }
+}
+

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadmap-kit.local/schemas/raci.schema.json",
+  "title": "RACI Assignment",
+  "type": "object",
+  "required": ["area", "responsible", "accountable", "consulted", "informed"],
+  "properties": {
+    "area": { "type": "string" },
+    "responsible": { "type": "string" },
+    "accountable": { "type": "string" },
+    "consulted": { "type": "array", "items": { "type": "string" } },
+    "informed": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

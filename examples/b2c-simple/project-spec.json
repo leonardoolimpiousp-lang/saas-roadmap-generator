@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "name": "Habit Bloom",
+    "slug": "habit-bloom",
+    "prefix": "HBLM",
+    "description": "SaaS B2C que ajuda profissionais a criar rotinas sustentáveis por meio de planos pequenos, acompanhamento de progresso e reflexão semanal.",
+    "stage": "validation",
+    "artifactLanguage": "pt-BR",
+    "northStar": "Semanas em que o usuário conclui pelo menos três ações planejadas.",
+    "outOfScope": [
+      "Marketplace",
+      "Dados regulados",
+      "Venda enterprise"
+    ],
+    "repositoryPath": null
+  },
+  "theme": {
+    "primary": "#173b35",
+    "accent": "#2f9e73",
+    "surface": "#ffffff",
+    "background": "#f4f7f5",
+    "text": "#172b36",
+    "tone": "claro, direto e confiável",
+    "logoDataUrl": null
+  },
+  "timelineMonths": 8,
+  "team": [
+    {
+      "name": "Fundadora",
+      "role": "Produto",
+      "capacity": "full-time"
+    },
+    {
+      "name": "Parceiro",
+      "role": "Engenharia",
+      "capacity": "part-time"
+    }
+  ],
+  "modules": {
+    "ai-automation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "subscriptions": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "marketplace": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "teams-rbac": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "enterprise": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "document-processing": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "realtime-collaboration": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "public-api": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "mobile-pwa": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "regulated-data": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "internationalization": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "ugc-moderation": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "data-migration": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "developer-product": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    },
+    "community-referral": {
+      "status": "included",
+      "reason": "Necessário para a jornada e modelo de negócio desta fixture."
+    },
+    "sales-customer-success": {
+      "status": "not_applicable",
+      "reason": "Não faz parte do escopo confirmado desta fixture."
+    }
+  },
+  "architecture": [
+    {
+      "layer": "Experience",
+      "description": "Interface responsiva, acessível e orientada à jornada principal."
+    },
+    {
+      "layer": "Application",
+      "description": "Casos de uso, autorização, workflows e transações."
+    },
+    {
+      "layer": "Domain",
+      "description": "Entidades, políticas e invariantes independentes da infraestrutura."
+    },
+    {
+      "layer": "Infrastructure",
+      "description": "Persistência, filas, billing, notificações e integrações atrás de portas."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-DOMAIN",
+      "title": "Workflow principal não entrega o resultado prometido",
+      "probability": "medium",
+      "impact": "critical",
+      "owner": "Produto",
+      "mitigation": "Validar a fatia vertical com usuários e fixtures representativas antes de expandir."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "activation",
+      "name": "Ativação",
+      "category": "product",
+      "target": "≥60%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "retention",
+      "name": "Retenção em 4 semanas",
+      "category": "product",
+      "target": "≥35%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "conversion",
+      "name": "Trial para pago",
+      "category": "commercial",
+      "target": "≥10%",
+      "direction": "increase",
+      "progress": 0
+    },
+    {
+      "id": "availability",
+      "name": "Disponibilidade mensal",
+      "category": "quality",
+      "target": "≥99,9%",
+      "direction": "maintain",
+      "progress": 0
+    },
+    {
+      "id": "security",
+      "name": "Vulnerabilidades críticas abertas",
+      "category": "security",
+      "target": "0",
+      "direction": "decrease",
+      "progress": 0
+    }
+  ],
+  "raci": [
+    {
+      "area": "Produto",
+      "responsible": "Produto",
+      "accountable": "Fundadora",
+      "consulted": [
+        "Engenharia"
+      ],
+      "informed": [
+        "Growth"
+      ]
+    },
+    {
+      "area": "Engenharia",
+      "responsible": "Engenharia",
+      "accountable": "Fundadora",
+      "consulted": [
+        "Produto"
+      ],
+      "informed": [
+        "Growth"
+      ]
+    },
+    {
+      "area": "Go to market",
+      "responsible": "Growth",
+      "accountable": "Fundadora",
+      "consulted": [
+        "Produto"
+      ],
+      "informed": [
+        "Engenharia"
+      ]
+    },
+    {
+      "area": "Segurança e release",
+      "responsible": "Engenharia",
+      "accountable": "Fundadora",
+      "consulted": [
+        "Growth"
+      ],
+      "informed": [
+        "Produto"
+      ]
+    }
+  ],
+  "domainTracks": [
+    "behavior-change"
+  ],
+  "domainTasks": [
+    {
+      "catalogKey": "habit-loop.definir-modelo-de-habito",
+      "track": "behavior-change",
+      "module": "habit-loop",
+      "title": "Definir modelo de hábito",
+      "description": "Entregar definir modelo de hábito como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "L",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Definir modelo de hábito funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [],
+      "defaultStage": 5
+    },
+    {
+      "catalogKey": "habit-loop.criar-plano-semanal",
+      "track": "behavior-change",
+      "module": "habit-loop",
+      "title": "Criar plano semanal",
+      "description": "Entregar criar plano semanal como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P1",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Criar plano semanal funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "habit-loop.definir-modelo-de-habito"
+      ],
+      "defaultStage": 6
+    },
+    {
+      "catalogKey": "habit-loop.registrar-acao-concluida",
+      "track": "behavior-change",
+      "module": "habit-loop",
+      "title": "Registrar ação concluída",
+      "description": "Entregar registrar ação concluída como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "M",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Registrar ação concluída funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "habit-loop.criar-plano-semanal"
+      ],
+      "defaultStage": 7
+    },
+    {
+      "catalogKey": "habit-loop.gerar-reflexao-semanal",
+      "track": "behavior-change",
+      "module": "habit-loop",
+      "title": "Gerar reflexão semanal",
+      "description": "Entregar gerar reflexão semanal como parte verificável do workflow específico do produto.",
+      "rationale": "Esta tarefa implementa uma capacidade própria do domínio e não pertence ao catálogo universal.",
+      "priority": "P2",
+      "effort": "L",
+      "ownerRole": "Produto",
+      "acceptanceCriteria": [
+        "Gerar reflexão semanal funciona na jornada principal.",
+        "Uma pessoa diferente valida o resultado com dados representativos."
+      ],
+      "riskIds": [
+        "R-DOMAIN"
+      ],
+      "dependsOnCatalogKeys": [
+        "habit-loop.registrar-acao-concluida"
+      ],
+      "defaultStage": 8
+    }
+  ]
+}

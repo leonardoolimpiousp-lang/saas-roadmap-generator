@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadmap-kit.local/schemas/roadmap-export.schema.json",
+  "title": "Roadmap Export",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "project", "phases", "tasks", "criticalPath", "risks", "metrics", "raci"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "generatedAt": { "type": "string" },
+    "project": { "type": "object" },
+    "phases": { "type": "array", "minItems": 6, "maxItems": 14 },
+    "tasks": { "type": "array", "items": { "$ref": "roadmap-task.schema.json" } },
+    "criticalPath": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "$ref": "risk.schema.json" } },
+    "metrics": { "type": "array", "items": { "$ref": "metric.schema.json" } },
+    "raci": { "type": "array", "items": { "$ref": "raci.schema.json" } }
+  }
+}
+
