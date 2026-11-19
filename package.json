@@ -1,0 +1,18 @@
+{
+  "name": "universal-saas-roadmap-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interview-driven generator for autonomous, auditable SaaS roadmaps.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "generate:examples": "node scripts/generate-examples.mjs",
+    "validate:examples": "node scripts/validate-examples.mjs",
+    "test": "node --test tests/kit.test.mjs",
+    "check": "npm run build:catalog && npm run generate:examples && npm test && npm run validate:examples"
+  }
+}
+
